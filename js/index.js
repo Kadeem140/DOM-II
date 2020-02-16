@@ -22,24 +22,29 @@
     const footerTextSize = document.querySelector('.footer');//mpusedown
     const returnFooter = document.querySelector('.footer');//mouseup
     const pickCont = document.querySelector('.content-pick');
-    const stopNav = document.querySelector('nav .nav-link');
+    const stopNav = document.querySelectorAll('nav .nav-link');
 
         function makeblue(event) {
             event.stopPropagation();
             event.currentTarget.style.backgroundColor = "#40E0D0";
         }
 
-        function makeRed(event) {
-            event.currentTarget.style.backgroundColor = 'red';
+        function changeColor(event) {
+            event.currentTarget.style.backgroundColor = '#f5f5dc';
         }
 
-            stopNav.addEventListener('mouseenter', (e) => {
-                e.preventDefault();
+        stopNav.forEach((element) => {
+            element.addEventListener('mouseenter', (e) => {e.preventDefault();
                 e.target.style.fontSize = "3rem";
-                console.log("Im working NAV");
-                console.log(e);
-            });
+                });
 
+            element.addEventListener('mouseleave', (e) => {e.preventDefault();
+                e.target.style.fontSize = "1.70rem";       
+                });
+
+
+        })
+       
             firstImgChange.addEventListener('mouseenter', () => {
                 firstImgChange.src = "img/NewFunBus.jpg";
                 // console.log("I'm working!")
@@ -49,11 +54,15 @@
                 firstImgChangeBack.src = "img/fun-bus.jpg";
             })
 
-            letMeKnow.addEventListener('keydown', (ev) => {alert(ev.keyCode)});
+            letMeKnow.addEventListener('keypress', (ev) => {
+                ev.preventDefault(),
+                alert(ev.keyCode)
+            
+            });
 
             clickBgChange.addEventListener('click', makeblue)
             
-            pickCont.addEventListener('click', makeRed)
+            pickCont.addEventListener('click', changeColor)
 
             
             dblClickBgChange.addEventListener('dblclick', () => {
@@ -62,15 +71,26 @@
             newTitle.addEventListener('mouseover', () => {
                 newTitle.textContent = "Bus of Fun! Come on in!";
             });
-
-            signUpNow[1].addEventListener('click', () => {
-                confirm("Do you want to sign up?");
+            newTitle.addEventListener('mouseleave', () => {
+                newTitle.textContent = "Fun Bus";
             })
 
-            signUpNow[2].addEventListener('click', () => {
-                prompt("Come on in!", "Your name here.");
-                return "Okay!";
-            })
 
+            signUpNow.forEach( element => {
+                element.addEventListener('click', () => {
+                    confirm("Do you want to sign up?");
+                    prompt("Enter your name here.");
+
+              }) });
+
+    
+            // function makeblue(event) {
+            //     event.stopPropagation();
+            //     event.currentTarget.style.backgroundColor = "#40E0D0";
+            // }
+    
+            // function changeColor(event) {
+            //     event.currentTarget.style.backgroundColor = '#f5f5dc';
+            // }
     
     
